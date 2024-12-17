@@ -11,12 +11,13 @@
 
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
-const { esquema } = require('graphql');
+//const { esquema } = require('graphql');
+const graphql = require('graphql');
  
 var fakeDatabase = {
   'a': {
     id: 'a',
-    npm: 'alice',
+    nom: 'alice',
   },
   'b': {
     id: 'b',
@@ -24,8 +25,9 @@ var fakeDatabase = {
   },
 };
  
+
 let tipusUsuari = new graphql.GraphQLObjectType({
-  name: 'User',
+  name: 'Usuari',
   fields: {
     id: { type: graphql.GraphQLString },
     nom: { type: graphql.GraphQLString },
@@ -36,7 +38,7 @@ let tipusUsuari = new graphql.GraphQLObjectType({
 let tipusConsulta = new graphql.GraphQLObjectType({
   name: 'Query',
   fields: {
-    user: {
+    usuari: {
       type: tipusUsuari,
       // `args` describes the arguments that the `user` query accepts
       args: {
@@ -49,12 +51,11 @@ let tipusConsulta = new graphql.GraphQLObjectType({
   }
 });
  
-let schema = new graphql.GraphQLSchema({query: tipusConsulta});
+let esquema = new graphql.GraphQLSchema({query: tipusConsulta});
  
 const app = express();
 app.use('/graphql', graphqlHTTP({
   schema: esquema,
-  rootValue: arrel,
   graphiql: true,
 }));
 app.listen(4000);
