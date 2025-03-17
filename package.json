@@ -4,7 +4,7 @@
   "description": "workshop M07UF4",
   "main": "M01_REST_basic.js",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {},
