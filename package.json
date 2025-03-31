@@ -5,7 +5,7 @@
   "main": "M01_REST_basic.js",
   "dependencies": {
     "express": "^4.16.3",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {},
   "scripts": {
