@@ -1,5 +1,5 @@
 # DAWM07UF4-WebServices-material
-Web Services Workshop. DAWM07UF4
+Web Services Workshop. DAW2 Jesuïtes El Clot
 
 
 
