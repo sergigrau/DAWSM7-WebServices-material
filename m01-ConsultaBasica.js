@@ -13,7 +13,7 @@ http://localhost:4000/graphql
 */
 
 const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
+const { createHandler } = require('graphql-http/lib/use/express');
 const { buildSchema } = require('graphql');
  
 // schema de GraphQL
@@ -31,10 +31,9 @@ const arrel = {
 };
  
 const app = express();
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', createHandler({
   schema: esquema,
   rootValue: arrel,
-  graphiql: true,
 }));
 app.listen(4000);
 console.log('Executant servidor GraphQL API a http://localhost:4000/graphql');
