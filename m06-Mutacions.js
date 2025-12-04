@@ -35,12 +35,14 @@ mutation{
   
  * 
  * @autor sergi.grau@fje.edu
- * @version 1.0 17.12.20
+ * @version 1.0 03.12.25
  */
 
 
 const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
+const { createHandler } = require('graphql-http/lib/use/express');
+// createHandler: integra la implementació `graphql-http` amb Express
+// Nota: `graphql-http` processa peticions GraphQL però no inclou la UI GraphiQL
 const { buildSchema } = require('graphql');
  
 // schema de GraphQL, ! vol dir que NO POT SER NULL
@@ -95,11 +97,15 @@ const arrel = {
 };
  
 const app = express();
+// Serveix fitxers estàtics des de `public` (client HTML/JS/CSS)
 app.use(express.static('public'))
-app.use('/graphql', graphqlHTTP({
+
+// Muntatge de l'endpoint GraphQL a `/graphql` utilitzant `graphql-http`.
+// `graphql-http` no proporciona GraphiQL integrat. Si vols una UI a la
+// mateixa ruta, canvia a `express-graphql` i posa `graphiql: true`.
+app.use('/graphql', createHandler({
   schema: esquema,
   rootValue: arrel,
-  graphiql: true,
 }));
 app.listen(4000);
 console.log('Executant servidor GraphQL API a http://localhost:4000/graphql');

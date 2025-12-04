@@ -11,12 +11,14 @@
   
  * 
  * @author sergi.grau@fje.edu
- * @version 1.0 13.12.20
+ * @version 1.0 03.12.25
  */
 
 
 const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
+const { createHandler } = require('graphql-http/lib/use/express');
+// createHandler: integra la implementació `graphql-http` amb Express
+// Nota: `graphql-http` processa peticions GraphQL però NO inclou la UI GraphiQL
 const { buildSchema } = require('graphql');
  
 // schema de GraphQL, ! vol dir que NO POT SER NULL
@@ -40,11 +42,16 @@ const arrel = {
 };
  
 const app = express();
-app.use(express.static('public'))
-app.use('/graphql', graphqlHTTP({
+// Serveix fitxers estàtics des de `public` (p. ex. client HTML/JS)
+app.use(express.static(__dirname));
+
+// Muntatge de l'endpoint GraphQL a `/graphql` utilitzant `graphql-http`.
+// IMPORTANT: no hi ha `graphiql: true` amb `graphql-http`. Si necessites la
+// UI integrada, utilitza `express-graphql` amb `graphiql: true` o utilitza
+// una eina externa (Altair, GraphQL Playground, etc.).
+app.use('/graphql', createHandler({
   schema: esquema,
   rootValue: arrel,
-  graphiql: true,
 }));
 app.listen(4000);
 console.log('Executant servidor GraphQL API a http://localhost:4000/graphql');

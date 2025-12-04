@@ -5,9 +5,9 @@
   "main": "M01_REST_basic.js",
   "dependencies": {
     "express": "^4.16.3",
+    "graphql-http": "^1.22.4",
     "jsonwebtoken": "^8.5.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

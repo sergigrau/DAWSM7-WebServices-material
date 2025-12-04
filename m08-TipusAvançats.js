@@ -5,18 +5,21 @@
 
  * 
  * @autor sergi.grau@fje.edu
- * @version 1.0 18.12.20
+ * @version 1.0 03.12.25
  */
 
 
 const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
-const { esquema } = require('graphql');
- 
+// Express: framework per crear servidor HTTP i muntar rutes
+const { createHandler } = require('graphql-http/lib/use/express');
+// createHandler: integra `graphql-http` amb Express per gestionar l'endpoint `/graphql`
+const graphql = require('graphql');
+
+// Base de dades falsa en memòria per a exemples (normalment seria una BD real)
 var fakeDatabase = {
   'a': {
     id: 'a',
-    npm: 'alice',
+    nom: 'alice',
   },
   'b': {
     id: 'b',
@@ -24,8 +27,10 @@ var fakeDatabase = {
   },
 };
  
+
+// Definició d'un tipus `Usuari` amb camps `id` i `nom`.
 let tipusUsuari = new graphql.GraphQLObjectType({
-  name: 'User',
+  name: 'Usuari',
   fields: {
     id: { type: graphql.GraphQLString },
     nom: { type: graphql.GraphQLString },
@@ -33,29 +38,37 @@ let tipusUsuari = new graphql.GraphQLObjectType({
 });
  
 
+// Definició del tipus `Query` que exposa la consulta `usuari(id)`.
+// El camp `usuari` accepta un argument `id` i retorna un objecte `Usuari`.
 let tipusConsulta = new graphql.GraphQLObjectType({
   name: 'Query',
   fields: {
-    user: {
+    usuari: {
       type: tipusUsuari,
-      // `args` describes the arguments that the `user` query accepts
+      // `args`: arguments que la consulta `usuari` accepta
       args: {
         id: { type: graphql.GraphQLString }
       },
+      // `resolve`: funció que retorna les dades per aquest camp
       resolve: (_, {id}) => {
+        // Retorna l'usuari des de la "BD" en memòria
         return fakeDatabase[id];
       }
     }
   }
 });
  
-let schema = new graphql.GraphQLSchema({query: tipusConsulta});
- 
+// Creació de l'esquema a partir del tipus `Query` definit
+let esquema = new graphql.GraphQLSchema({query: tipusConsulta});
+
 const app = express();
-app.use('/graphql', graphqlHTTP({
+// Muntatge de l'endpoint GraphQL amb `graphql-http`.
+// `graphql-http` processa les consultes però no proveeix GraphiQL integrat;
+// utilitza una eina externa (Altair, Playground) si necessites una UI.
+app.use('/graphql', createHandler({
   schema: esquema,
-  rootValue: arrel,
-  graphiql: true,
 }));
+
+// Inicia el servidor a porta 4000
 app.listen(4000);
 console.log('Executant servidor GraphQL API a http://localhost:4000/graphql');
