@@ -1,0 +1,27 @@
+{
+  "name": "m09-graphql-modular",
+  "version": "1.0.0",
+  "description": "Servidor GraphQL modular per a gestió d'Alumnes - Exemple educatiu",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "graphql",
+    "express",
+    "graphql-http",
+    "modular",
+    "alumnes"
+  ],
+  "author": "sergi.grau@fje.edu",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "graphql": "^16.8.1",
+    "graphql-http": "^1.22.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

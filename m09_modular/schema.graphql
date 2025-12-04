@@ -1,0 +1,33 @@
+# Schema GraphQL per a gestió d'Alumnes
+# autor: sergi.grau@fje.edu
+# data: 04.12.25
+# versió: 1.0
+
+# Tipus Alumne amb els seus camps
+type Alumne {
+  codi: ID!
+  nom: String
+}
+
+# Input type per a crear/modificar alumnes
+input AlumneInput {
+  nom: String!
+}
+
+# Consultes disponibles (Query)
+type Query {
+  # Obtenir un alumne per codi
+  obtenirAlumne(codi: ID!): Alumne
+  # Obtenir tots els alumnes
+  obtenirAlumnes: [Alumne]
+}
+
+# Mutacions disponibles (operacions de modificació)
+type Mutation {
+  # Afegir un nou alumne
+  afegirAlumne(nom: String!): Alumne
+  # Modificar un alumne existent
+  modificarAlumne(codi: ID!, nom: String!): Alumne
+  # Esborrar un alumne per codi
+  esborrarAlumne(codi: ID!): Int
+}
