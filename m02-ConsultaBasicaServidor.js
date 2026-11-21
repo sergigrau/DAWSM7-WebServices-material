@@ -1,7 +1,7 @@
 /**
  * Back-end amb graphql, es pot provar amb POSTMAN o curl
  * @author sergi.grau@fje.edu
- * @version 1.0 4.12.25
+ * @version 3.0 21.11.26
  */
 
  /*

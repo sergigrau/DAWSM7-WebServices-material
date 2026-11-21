@@ -1,7 +1,7 @@
 /**
  * Aplicació en ExpressJS que crea una API REST senzilla
  * @author sergi.grau@fje.edu
- * @version 2.0 10.10.21
+ * @version 3.0 21.11.26
  */
 const express = require('express');
 const app=express();
@@ -19,7 +19,7 @@ app.get('/', (req, res)=>res.send('hola'));
 app.get('/api/alumnes', (req, res)=>res.send(alumnes));
 app.get('/api/alumnes/:codi', (req, res)=>{
     let alumne = alumnes.find(a =>a.codi===parseInt(req.params.codi));
-    if (!alumne) res.status(404, 'error');
+    if (!alumne) return res.sendStatus(404);
     res.send(alumne);
 });
 

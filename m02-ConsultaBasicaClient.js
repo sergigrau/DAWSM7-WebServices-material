@@ -1,3 +1,6 @@
+/**
+ * @version 3.0 21.11.26
+ */
 fetch('/graphql', {
     method: 'POST',
     headers: {

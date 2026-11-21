@@ -1,3 +1,6 @@
+/**
+ * @version 3.0 21.11.26
+ */
 // npm install jsonwebtoken
 /* {
   "nom": "sergi",
@@ -24,7 +27,7 @@ app.get('/hora', (req, res) => {
     res.status(200).send(`La hora és ${hora}`);
 });
 
-app.get("*", (req, res) => {
+app.get("/{*splat}", (req, res) => {
     res.sendStatus(404);
 });
 

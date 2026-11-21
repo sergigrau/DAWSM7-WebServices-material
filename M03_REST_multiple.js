@@ -1,7 +1,7 @@
 /**
  * Aplicació en ExpressJS que crea una API REST completa
  * @author sergi.grau@fje.edu
- * @version 2.0 10.10.21
+ * @version 3.0 21.11.26
  */
 
 
@@ -23,16 +23,16 @@ app.get('/api/productes', (req, res)=>res.send(productes));
 
 app.get('/api/productes/:cat', (req, res)=>{
     let ps=[];
-    let producte = productes.forEach(function(p){
+    productes.forEach(function(p){
         if (p.cat===req.params.cat) ps.push(p);
     });
-    if (!producte) res.status(404, 'error');
+    if (ps.length === 0) return res.sendStatus(404);
     res.send(ps);
 });
 
 app.get('/api/productes/:cat/:nom', (req, res)=>{
     let producte = productes.find(a =>a.cat===req.params.cat && a.nom===req.params.nom);
-    if (!producte) res.status(404, 'error');
+    if (!producte) return res.sendStatus(404);
     res.send(producte);
 });
 

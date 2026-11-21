@@ -2,7 +2,7 @@
 /**
  * Back-end amb graphql, que mostra com s'utilitzen els tipus bàsics
  * @author sergi.grau@fje.edu
- * @version 1.0 04.12.25
+ * @version 3.0 21.11.26
  */
 
 

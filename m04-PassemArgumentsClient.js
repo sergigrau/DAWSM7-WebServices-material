@@ -1,3 +1,6 @@
+/**
+ * @version 3.0 21.11.26
+ */
 window.addEventListener('load', function () {
   function cridarGraph() {
     let tirades = document.getElementById('vegades').value * 1;

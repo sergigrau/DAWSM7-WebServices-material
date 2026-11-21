@@ -16,6 +16,8 @@ m09_modular/
 
 ## 🚀 Instal·lació i ús
 
+Aquest exemple està actualitzat per a Node.js 26 i Express 5.
+
 ### 1. Instal·lar dependències
 ```bash
 cd m09_modular

@@ -6,9 +6,9 @@ const { buildSchema } = require('graphql');
 // buildSchema: construeix l'esquema GraphQL des d'una cadena SDL
 
 /*
+@version 3.0 21.11.26
 Exemple CRUD amb Alumnes
 sergi.grau@fje.edu
-04.12.25 versio 1
 
 query {
   obtenirAlumnes {

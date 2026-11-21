@@ -1,6 +1,6 @@
 // autor: sergi.grau@fje.edu
 // data: 04.12.25
-// versió: 1.0
+// versió: 3.0 - 21.11.26
 
 /**
  * Mòdul de base de dades en memòria per a gestió d'Alumnes
